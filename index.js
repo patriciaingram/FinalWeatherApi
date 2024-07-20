@@ -127,7 +127,7 @@ app.post('/api/login', async (req, res) => {
         const user = await db.getUserByUsername(username);
         if (user && await bcrypt.compare(password, user.password)) {
             req.session.user = { id: user.id, username: user.username };
-            res.status(200).send('Login successful');
+            res.status(200).send({success: 'Login successful'});
         } else {
             res.status(401).send('Invalid username or password');
         }
